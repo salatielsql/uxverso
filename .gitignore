@@ -35,6 +35,8 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+.firebase
+.DS_Store
 
 # TypeScript v1 declaration files
 typings/
