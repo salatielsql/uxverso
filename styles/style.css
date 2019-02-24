@@ -1,54 +1,69 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   padding: 0;
   margin: 0;
   background-color: #1F1F1F;
   font-family: 'Rubik', sans-serif;
   color: #fff;
+  font-size: 16px;
+  
 }
+
 .container {
   width: 100%;
-  max-width: 960px;
+  max-width: 1170px;
   padding: 1rem;
   margin: 0 auto;
 }
+
 .airtable-container {
   margin: 1rem;
 }
+
 .text-center {
   text-align: center;
 }
+
 .nav {
   display: flex;
   justify-content: space-between;
 }
+
 .nav-items {
   display: flex;
   align-items: center;
 }
+
 .nav-item {
   color: #fff;
   text-decoration: none;
   height: 24px;
   margin-right: 1rem;
 }
+
 .universe-container {
   background-image: url('../static/bg.svg');
   background-size: 100%;
   background-repeat: no-repeat;
-  background-position: bottom center;
+  background-position: top center;
 }
+
 h1 {
   font-size: 3rem;
   font-weight: 300;
 }
+
 .lead {
   opacity: .85;
   font-weight: 100;
   font-size: 1.25rem;
+  max-width: 600px;
+  margin: 2rem auto;
 }
+
 .brand {
   position: relative;
   display: inline-block;
@@ -63,6 +78,7 @@ h1 {
   right: -55px;
   color: #0BBDF6;
 }
+
 .mailchimp-input {
   padding: 1rem;
   border-radius: 8px;
@@ -70,6 +86,7 @@ h1 {
   font-size: 1rem;
   height: 3rem;
 }
+
 .mailchimp-button {
   background-color: #0BBDF6;
   border-radius: 8px;
@@ -78,3 +95,150 @@ h1 {
   border: 0;
   height: 3rem;
 }
+
+#records-container,
+#placeholders {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.record-item {
+  flex: 1 25%;
+  padding: 1.25rem;
+  max-width: 25%;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.15s ease;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  text-align: center;
+  justify-content: center;
+}
+
+.record-item.placeholder {
+  max-width: calc(25% - 2.5rem);
+  margin: 1.25rem;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.record-item h2 {
+  font-size: 1rem;
+}
+
+.record-item:hover {
+  background-color: rgba(255, 255, 255, .05);
+}
+
+.record-item img {
+  max-width: 100%;
+}
+.tag {
+  padding: 4px 8px;
+  background-color: rgba(255, 255, 255, .15);
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  border-radius: 1rem;
+  margin-right: 1rem;
+  font-size: .875rem;
+  display: inline-block;
+  margin-bottom: .5rem;
+}
+ 
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+
+.placeholder {
+    animation-duration: 1.25s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #1F1F1F;
+    background: linear-gradient(to right, #2e2e2e 10%, #393939 18%, #2e2e2e 33%);
+    background-size: 800px 104px;
+    height: 200px;
+    position: relative;
+}
+
+ @media screen and (max-width: 1024px) {
+  .record-item {
+    flex: 1 33%;
+    padding: 1.25rem;
+    max-width: 33%;
+  }
+  
+  .record-item.placeholder {
+    max-width: calc(33% - 2.5rem);
+    margin: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .universe-container {
+    background-size: 140%;
+  }
+  .alpha {
+    top: 38px;
+    right: -5px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .record-item {
+    flex: 1 50%;
+    padding: .5rem;
+    margin-bottom: 1.5rem;
+    max-width: 50%;
+  }
+
+  .record-item.placeholder {
+    max-width: calc(50% - 1rem);
+    margin: 1.25rem;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+  .lead {
+    font-size: 1rem;
+    margin: 1rem 0 1rem auto;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .record-item {
+    flex: 1 100%;
+    padding: .5rem;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+  }
+  .record-item.placeholder {
+    max-width: calc(100% - 1rem);
+    margin: 1.25rem;
+  }
+  .mailchimp-input {
+    flex: 2;
+    width: 100%;
+    margin-right: .5rem;
+  }
+  .mailchimp-button {
+    flex: 1;
+  }
+  #mc_embed_signup_scroll {
+    display: flex;
+  }
+  .github-button {
+    display: none;
+  }
+}
+
