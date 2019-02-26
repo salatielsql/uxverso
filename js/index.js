@@ -3,10 +3,9 @@ var base = new Airtable({ apiKey: 'keyzeNxuB0yshK7V6' }).base('appjdSMSZP61JTDRk
 var container = document.getElementById('records-container');
 var placeholders = document.getElementById('placeholders');
 var localRecords = [];
-var storage = window.localStorage;
+var storage = window.sessionStorage;
 
 if (storage.getItem('records') == null || undefined) {
-  console.log('Não tem!')
   base('learn').select({
     view: "Grid view",
     filterByFormula: `{available} != ""`
@@ -19,7 +18,6 @@ if (storage.getItem('records') == null || undefined) {
     fetchNextPage();
 
   }, function done(err) {
-    console.log(localRecords);
     storage.setItem('records', JSON.stringify(localRecords));
     renderRecords()
 
@@ -44,13 +42,4 @@ function renderRecords() {
   })
   placeholders.style.display = 'none';
   container.innerHTML = recordsHTML;
-  // recordsContent += `<div class="record-item"><h2>${record.get('name')}</h2></div>`
 }
-
-      // let name = record.get('name');
-      // let imageUrl = record.get('image')[0].url;
-      // let imageAlt = record.get('image')[0].filename;
-      // let type = record.get('type');
-      // let link = record.get('link');
-      // let level = record.get('level');
-      // console.log(index, name, imageUrl, imageAlt, type, link);
