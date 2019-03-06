@@ -9,7 +9,6 @@ var storage = window.sessionStorage;
 if (storage.getItem('records') == null || undefined) {
   fetchFromAirtable(callRender)
 } else {
-  console.log('ja tem records')
   callRender();
 }
 
@@ -37,7 +36,6 @@ function callRender(records) {
 
   if (!records) { records = recordslist }
 
-  console.log('CallRender', records)
   renderRecords(records, 'renderHTML');
 }
 // Map and render
@@ -48,6 +46,7 @@ function renderRecords(records, htmlVar) {
     <a href="${item.link}" class="record-item">
       <img src="${item.image[0].url}"/>
       <h2>${item.name}</h2>
+      <p class="author-name">por ${item.author}</p>
       <span class="tag">${item.type == "curso" ? "Curso" : "Livro"}</span>
       <span class="tag">${item.level}</span>
     </a>
@@ -55,15 +54,23 @@ function renderRecords(records, htmlVar) {
   })
   placeholders.style.display = 'none';
   container.innerHTML = htmlVar;
-  console.log('Rendered!', htmlVar);
+  console.log(records);
 }
 // Filter records
 function filterBy(filter, arg) {
   var filteredResults = recordslist.filter(function (item) { return item[filter] == arg });
-  console.log(filter, arg, filteredResults);
   renderRecords(filteredResults, 'renderFilteredResults')
 }
 
-//add active to tag-buttons
-const tagButtons = document.querySelectorAll('.tag-button');
-console.log(tagButtons);
+//add active to tsag-buttons
+const tagButtons = Array.from(document.querySelectorAll('.tag-button'));
+tagButtons.forEach(function (tagButton) {
+  return tagButton.addEventListener('click', function (e) {
+    tagButtons.some(function (i) {
+      if (i.classList.contains('active')) {
+        return i.classList.remove('active')
+      }
+    })
+    e.target.classList.add('active');
+  });
+});

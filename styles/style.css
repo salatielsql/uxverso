@@ -130,6 +130,11 @@ h1 {
   font-size: 1rem;
 }
 
+.record-item .author-name {
+  font-size: .8rem;
+  opacity: .7;
+}
+
 .record-item:hover {
   background-color: rgba(255, 255, 255, .05);
 }
@@ -167,6 +172,7 @@ h1 {
   -moz-transition: all .15s ease-in-out;
   transition: all .15s ease-in-out;
   cursor: pointer;
+  outline: 0;
 }
 .tag-button:hover {
   background-color: rgba(255, 255, 255, .15);
