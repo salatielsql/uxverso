@@ -1,7 +1,9 @@
 * {
   box-sizing: border-box;
 }
-
+input {
+  -webkit-appearance: none;
+}
 body {
   padding: 0;
   margin: 0;
@@ -85,6 +87,7 @@ h1 {
   border: 0;
   font-size: 1rem;
   height: 3rem;
+  -webkit-appearance: none;
 }
 
 .mailchimp-button {
@@ -94,6 +97,7 @@ h1 {
   padding: 1rem;
   border: 0;
   height: 3rem;
+  -webkit-appearance: none;
 }
 
 #records-container,
