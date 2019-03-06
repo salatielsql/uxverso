@@ -3,9 +3,17 @@ var base = new Airtable({ apiKey: 'keyzeNxuB0yshK7V6' }).base('appjdSMSZP61JTDRk
 var container = document.getElementById('records-container');
 var placeholders = document.getElementById('placeholders');
 var localRecords = [];
+var recordslist = [];
 var storage = window.sessionStorage;
 
 if (storage.getItem('records') == null || undefined) {
+  fetchFromAirtable(callRender)
+} else {
+  console.log('ja tem records')
+  callRender();
+}
+
+function fetchFromAirtable(callback) {
   base('learn').select({
     view: "Grid view",
     filterByFormula: `{available} != ""`
@@ -17,21 +25,26 @@ if (storage.getItem('records') == null || undefined) {
 
     fetchNextPage();
 
-  }, function done(err) {
+  }, function done(err, ) {
     storage.setItem('records', JSON.stringify(localRecords));
-    renderRecords()
-
+    callback(localRecords)
     if (err) { console.error(err); return; }
   });
-} else {
-  renderRecords()
 }
+// Callback and get localstorage items
+function callRender(records) {
+  recordslist = JSON.parse(storage.getItem('records'));
 
-function renderRecords() {
-  var recordslist = JSON.parse(storage.getItem('records'));
-  var recordsHTML = '';
-  recordslist.forEach(function (item) {
-    recordsHTML += `
+  if (!records) { records = recordslist }
+
+  console.log('CallRender', records)
+  renderRecords(records, 'renderHTML');
+}
+// Map and render
+function renderRecords(records, htmlVar) {
+  var htmlVar = '';
+  records.forEach(function (item) {
+    htmlVar += `
     <a href="${item.link}" class="record-item">
       <img src="${item.image[0].url}"/>
       <h2>${item.name}</h2>
@@ -41,5 +54,16 @@ function renderRecords() {
     `;
   })
   placeholders.style.display = 'none';
-  container.innerHTML = recordsHTML;
+  container.innerHTML = htmlVar;
+  console.log('Rendered!', htmlVar);
 }
+// Filter records
+function filterBy(filter, arg) {
+  var filteredResults = recordslist.filter(function (item) { return item[filter] == arg });
+  console.log(filter, arg, filteredResults);
+  renderRecords(filteredResults, 'renderFilteredResults')
+}
+
+//add active to tag-buttons
+const tagButtons = document.querySelectorAll('.tag-button');
+console.log(tagButtons);

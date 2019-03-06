@@ -148,6 +148,34 @@ h1 {
   display: inline-block;
   margin-bottom: .5rem;
 }
+.buttons-container {
+  margin-top: 2rem;
+}
+.tag-button {
+  padding: 4px 8px;
+  background-color: transparent;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  border-radius: 1rem;
+  margin-right: 1rem;
+  font-size: .875rem;
+  display: inline-block;
+  margin-bottom: .5rem;
+  border: 1px solid #fff;
+  color: #fff;
+  -webkit-transition: all .15s ease-in-out;
+  -moz-transition: all .15s ease-in-out;
+  transition: all .15s ease-in-out;
+  cursor: pointer;
+}
+.tag-button:hover {
+  background-color: rgba(255, 255, 255, .15);
+}
+ 
+.tag-button.active {
+  background-color: #fff;
+  color: #1F1F1F;
+}
  
 @keyframes placeHolderShimmer{
     0%{
