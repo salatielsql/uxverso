@@ -12,3 +12,4 @@ Tudo que sei hoje como profissional foi estudando online, através de cursos, ar
 ## Como contribuir
 Você pode ajudar enviando um curso ou livro relevante através do link:
 https://uxverso.com.br/contribua.html
+Em breve issues públicas :)
