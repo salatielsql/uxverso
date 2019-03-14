@@ -10,12 +10,14 @@ if (storage.getItem('records') == null || undefined) {
   fetchFromAirtable(callRender)
 } else {
   callRender();
+  console.log('aaaaa')
+
 }
 
 function fetchFromAirtable(callback) {
   base('learn').select({
     view: "Grid view",
-    filterByFormula: `{available} != ""`
+    filterByFormula: `{available} = "sim"`
   }).eachPage(function page(records, fetchNextPage) {
 
     records.forEach(function (record) {
@@ -26,10 +28,13 @@ function fetchFromAirtable(callback) {
 
   }, function done(err, ) {
     storage.setItem('records', JSON.stringify(localRecords));
+    console.log('aaaaa')
     callback(localRecords)
     if (err) { console.error(err); return; }
   });
 }
+console.log('aaaaa')
+
 // Callback and get localstorage items
 function callRender(records) {
   recordslist = JSON.parse(storage.getItem('records'));
@@ -40,6 +45,8 @@ function callRender(records) {
 }
 // Map and render
 function renderRecords(records, htmlVar) {
+  console.table(records)
+
   var htmlVar = '';
   records.forEach(function (item) {
     htmlVar += `
