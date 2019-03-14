@@ -9,7 +9,8 @@ var storage = window.sessionStorage;
 if (storage.getItem('records') == null || undefined) {
   fetchFromAirtable(callRender)
 } else {
-  callRender();
+  storage.removeItem('records');
+  fetchFromAirtable(callRender)
 }
 
 function fetchFromAirtable(callback) {
@@ -41,8 +42,6 @@ function callRender(records) {
 }
 // Map and render
 function renderRecords(records, htmlVar) {
-  console.table(records)
-
   var htmlVar = '';
   records.forEach(function (item) {
     htmlVar += `
