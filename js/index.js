@@ -10,8 +10,6 @@ if (storage.getItem('records') == null || undefined) {
   fetchFromAirtable(callRender)
 } else {
   callRender();
-  console.log('aaaaa')
-
 }
 
 function fetchFromAirtable(callback) {
@@ -28,12 +26,10 @@ function fetchFromAirtable(callback) {
 
   }, function done(err, ) {
     storage.setItem('records', JSON.stringify(localRecords));
-    console.log('aaaaa')
     callback(localRecords)
     if (err) { console.error(err); return; }
   });
 }
-console.log('aaaaa')
 
 // Callback and get localstorage items
 function callRender(records) {
@@ -61,7 +57,6 @@ function renderRecords(records, htmlVar) {
   })
   placeholders.style.display = 'none';
   container.innerHTML = htmlVar;
-  console.log(records);
 }
 // Filter records
 function filterBy(filter, arg) {
